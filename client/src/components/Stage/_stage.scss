@@ -1,0 +1,10 @@
+@import "../../styles/theme";
+
+.stage{
+    display: grid;
+    grid-template-columns: repeat(12, 30px);
+    grid-template-rows: repeat(20, 30px);
+    grid-gap: 1px;
+    border: 1px solid $gray;
+    background: $black-stage;
+}

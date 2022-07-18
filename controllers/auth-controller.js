@@ -4,10 +4,10 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 require("dotenv").config();
 
-const generateAccessToken = (id) => {
-    const payload = {id}
-    return jwt.sign(payload, process.env.JWTSecret, {expiresIn: "24h"} )
-}
+// const generateAccessToken = (id) => {
+//     const payload = {id}
+//     return jwt.sign(payload, process.env.JWTSecret, {expiresIn: "24h"} )
+// }
 
 class authController {
     async registration(req, res) {
@@ -42,7 +42,12 @@ class authController {
             if (!validPassword) { 
                 return res.status(400).json({ message: "Wrong data" })
             }
-            const token = generateAccessToken(user._id)
+            const token = jwt.sign(
+                { userId: user._id },
+                process.env.JWTSecret,
+                { expiresIn: '1h' }
+            )            
+            // const token = generateAccessToken(user._id)
             const userEmail = user.email
             const userId = user._id
             const userName = user.username

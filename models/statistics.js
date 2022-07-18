@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const {Schema, model, Types} = require('mongoose');
 
 const StatisticsTetris = new Schema({
     score: {
@@ -12,7 +12,15 @@ const StatisticsTetris = new Schema({
     level: {
         type: Number,
         required: true
-    }
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },    
+    owner: {
+        type: Types.ObjectId,
+        ref: 'UserTetris'
+    }    
 })
 
 module.exports = model('StatisticsTetris', StatisticsTetris)

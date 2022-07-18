@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const {Schema, model, Types} = require('mongoose');
 
 const UserTetris = new Schema({
     username: {
@@ -13,7 +13,8 @@ const UserTetris = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    statistics: [{ type: Types.ObjectId, ref: 'StatisticsTetris' }]    
 })
 
 module.exports = model('UserTetris', UserTetris)

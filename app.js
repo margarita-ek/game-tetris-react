@@ -5,6 +5,7 @@ const cors = require('cors')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const authRoutes = require('./routes/auth-routes')
+const statRoutes = require('./routes/stat-routes')
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(express.json({ extended: true }))
 app.use(cors())
 app.use('/api/auth', authRoutes)
+app.use('/api', statRoutes)
 
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))

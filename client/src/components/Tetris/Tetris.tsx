@@ -8,6 +8,7 @@ import Stage from '../Stage/Stage'
 import Display from '../Display/Display'
 import StartButton from '../StartButton/StartButton'
 import Modal from '../Modal/Modal'
+import { useHttp } from '../../hooks/http.hook'
 
 const Tetris: React.FC = () => {
     const [dropTime, setDroptime] = useState<null | number>(null)
@@ -18,7 +19,7 @@ const Tetris: React.FC = () => {
 
     const { player, updatePlayerPos, resetPlayer, playerRotate } = usePlayer()
     const { stage, setStage, rowsCleared } = useStage(player, resetPlayer)
-    const { score, setScore, rows, setRows, level, setLevel } = useGameStatus(rowsCleared)
+    const { score, setScore, rows, setRows, level, setLevel } = useGameStatus(rowsCleared)  
 
     const movePlayer = (dir: number) => {
         if (!isColliding(player, stage, { x: dir, y: 0 })) {
@@ -82,12 +83,6 @@ const Tetris: React.FC = () => {
         drop();
     }, dropTime)
 
-    const buttonClick = () => { 
-        setShowModal(false)
-        setScore(0)
-        setStage(createStage())        
-    }
-
     useEffect(() => { 
         if ( gameOver && ( score > 0)) { 
             setShowModal(true)
@@ -116,7 +111,11 @@ const Tetris: React.FC = () => {
                     level={level}
                     rows={rows}
                     score={score}
-                    buttonClick={buttonClick} /> : null}
+                    setShowModal={setShowModal}
+                    setScore={setScore}
+                    setStage={setStage}
+                    createStage={createStage}
+                /> : null}
             </div>
         </div>
     )

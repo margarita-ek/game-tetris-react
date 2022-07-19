@@ -51,9 +51,7 @@
 
 .header__logo a {
   display: inline-block;
-  height: 35px;
-  width: 138px;
-  height: 35px;
+  height: 25px;
   width: 138px;
 }
 
@@ -572,7 +570,6 @@
 
 .tetris {
   width: 100%;
-  height: 100vh;
   overflow: hidden;
   outline: none;
 }
@@ -704,6 +701,7 @@ h1, h2, h3, h4, h5, h6 {
       -ms-flex-align: center;
           align-items: center;
   padding-bottom: 50px;
+  overflow: hidden;
 }
 
 .container-content {

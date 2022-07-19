@@ -4,7 +4,7 @@ class statisticsController {
     async postStatistics(req, res) {
         try {   
             const { score, rows, level } = req.body;
-            const statistics = new StatisticsTetris({ score, rows, level, date, owner })
+            const statistics = new StatisticsTetris({ score, rows, level, owner: req.user.userId })
             await statistics.save();
             return res.status(200).json({ message: "Statistics save", status: 200 })            
         } catch (e) {

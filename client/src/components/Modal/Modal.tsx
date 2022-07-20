@@ -16,7 +16,7 @@ interface Form {
     level: number
 }
 
-const Modal = (props: ModalProps) => {
+const Modal: React.FC<ModalProps> = (props) => {
   const { level, rows, score, setShowModal, setScore, setStage, createStage } = props
   const { request } = useHttp()
   const auth = useContext(AuthContext)

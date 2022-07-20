@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 
 
-export const Header = () => {
+export const Header: React.FC = () => {
     const auth = useContext(AuthContext)
     const navigate = useNavigate()
     const authPage = () => { navigate('/') }  

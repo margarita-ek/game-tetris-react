@@ -1,11 +1,11 @@
 import React from 'react'
 
-type Props = {
+type DisplayProps = {
   gameOver?: boolean
   text: string
 };
 
-const Display: React.FC<Props> = ({ gameOver, text }) => { 
+const Display: React.FC<DisplayProps> = ({ gameOver, text }) => { 
   return (
     <div className={`displayGame${gameOver ? " red" : ""}`}>
       {text}

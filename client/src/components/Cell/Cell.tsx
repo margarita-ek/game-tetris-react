@@ -1,7 +1,7 @@
 import React from 'react';
 import { TETROMINOS } from '../../setup';
 
-type Props = {
+type CellProps = {
   type: keyof typeof TETROMINOS;
 };
 
@@ -9,7 +9,7 @@ interface style {
   [key:string]: string
 }
 
-const Cell: React.FC<Props> = ({ type }) => { 
+const Cell: React.FC<CellProps> = ({ type }) => { 
   const style: style = {
     'width': 'auto',
     'background': `rgba(${TETROMINOS[type].color}, 0.8)`,

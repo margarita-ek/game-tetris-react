@@ -2,8 +2,9 @@ import React, { useCallback, useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { useHttp } from "../../hooks/http.hook"
 import { Loader } from "../Loader/Loader"
+import UserList from "./UserList/UserList"
 
-interface fetchData{
+export interface IFetchData{
     date: string
     level: number
     owner: string
@@ -13,8 +14,8 @@ interface fetchData{
     _id: string    
 }
 
-const UserPage = () => { 
-    const [fetchData, setFetchData] = useState<fetchData[]>([])
+const UserPage: React.FC = () => { 
+    const [fetchData, setFetchData] = useState<IFetchData[]>([])
     const auth = useContext(AuthContext)
     const { loading, request } = useHttp()
 
@@ -41,16 +42,19 @@ const UserPage = () => {
     }, [fetchData])
 
     return (
-        <>
-            { fetchData ? fetchData.reverse().map((item: fetchData) => {
-                return <ul style={{ "marginBottom": "20px" }} key={item._id}>
-                    <li>{`Date: ${new Date(item.date).toLocaleString()}`}</li>                    
-                    <li>{`Score: ${item.score}`}</li>
-                    <li>{`Rows: ${item.rows}`}</li>
-                    <li>{`Level: ${item.level}`}</li>
-                </ul>
-            }) : null}          
-        </>
+            <main className="main">
+                <div className="main__statistics statistics">
+                    <div className="statistics__content">
+                        <span className="statistics__title">{auth.userName}</span>
+                        <span className="statistics__subtitle">{auth.userEmail}</span>
+                        <div className="statistics__list-container">
+                            { fetchData ? fetchData.reverse().map((item: IFetchData) => {
+                                return <UserList key={item._id} item={item} />
+                            }) : null}                           
+                        </div>                 
+                    </div>
+                </div>
+            </main>            
     )
 }
 

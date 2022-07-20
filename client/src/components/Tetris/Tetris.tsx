@@ -8,7 +8,6 @@ import Stage from '../Stage/Stage'
 import Display from '../Display/Display'
 import StartButton from '../StartButton/StartButton'
 import Modal from '../Modal/Modal'
-import { useHttp } from '../../hooks/http.hook'
 
 const Tetris: React.FC = () => {
     const [dropTime, setDroptime] = useState<null | number>(null)

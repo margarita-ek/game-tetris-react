@@ -6,7 +6,7 @@ import { Loader } from "../Loader/Loader";
 
 type Message = null | string
 
-export const AuthPage = () => { 
+export const AuthPage: React.FC = () => { 
     const auth = useContext(AuthContext)
     const { loading, error, request, clearError } = useHttp()
     const messRef = useRef<any>()

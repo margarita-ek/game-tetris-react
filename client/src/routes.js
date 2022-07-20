@@ -13,7 +13,7 @@ export const useAppRoutes = (isAuthenticated) => {
             <Routes>
                 <Route path="/tetris" element={<Tetris />} />
                 <Route path="/user" element={<UserPage />} />
-                <Route path="*" element={<UserPage />} />
+                <Route path="*" element={<Tetris />} />
             </Routes>
         )
     }

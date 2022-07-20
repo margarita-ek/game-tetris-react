@@ -75,6 +75,13 @@ export const AuthPage: React.FC = () => {
         } catch (error) { }
     }
 
+    const pressHandler = async (e: any) => {
+        e.preventDefault()
+        if (e.code === "Enter") {
+            loginHandler()
+        }
+    }
+
     return (
         <div className="container-auth"> 
             <div className="auth">
@@ -98,6 +105,7 @@ export const AuthPage: React.FC = () => {
                                     name="username"
                                     value={form.username}
                                     onChange={changeHandler}
+                                    onKeyPress={pressHandler}                                        
                                 />
                                 <label htmlFor="username">Name</label>
                             </div>
@@ -113,6 +121,7 @@ export const AuthPage: React.FC = () => {
                                     name="email"
                                     value={form.email}
                                     onChange={changeHandler}
+                                    onKeyPress={pressHandler}                                        
                                 />
                                 <label htmlFor="email">E-mail</label>
                             </div>
@@ -128,6 +137,7 @@ export const AuthPage: React.FC = () => {
                                     name="password"
                                     value={form.password}
                                     onChange={changeHandler}
+                                    onKeyPress={pressHandler}                                    
                                 />
                                 <label htmlFor="password">Password</label>
                             </div>
@@ -151,6 +161,7 @@ export const AuthPage: React.FC = () => {
                                     name="email"
                                     value={form.email}
                                     onChange={changeHandler}
+                                    onKeyPress={pressHandler}                                             
                                 />
                                 <label htmlFor="email">E-mail</label>
                             </div>
@@ -166,6 +177,7 @@ export const AuthPage: React.FC = () => {
                                     name="password"
                                     value={form.password}
                                     onChange={changeHandler}
+                                    onKeyPress={pressHandler}
                                 />
                                 <label htmlFor="password">Password</label>
                             </div>

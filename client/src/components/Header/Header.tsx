@@ -18,9 +18,9 @@ export const Header: React.FC = () => {
         <>
             <header className="header">
                 <div className="header__container">
-                    <Link className="header__link-user" to="/user" title="user">{auth.userName}</Link>                    
-                    <Link className="header__link-user" to="/tetris" title="tetris">Tetris</Link>                    
-                    <span className="header__link-logout" onClick={logoutHandler} title="log out">LogOut</span>                    
+                    <Link className="header__link-tetris" to="/tetris" title="tetris">Tetris</Link>         
+                    <Link className="header__link-user" to="/user" title="user">{auth.userName}</Link>                               
+                    <span className="header__link-logout" onClick={logoutHandler} title="log out" />                    
                 </div>
             </header>
         </>

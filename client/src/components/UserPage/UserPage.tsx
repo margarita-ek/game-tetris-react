@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { useHttp } from "../../hooks/http.hook"
-import { Loader } from "../Loader/Loader"
 import UserList from "./UserList/UserList"
 
 export interface IFetchData{
@@ -17,7 +16,7 @@ export interface IFetchData{
 const UserPage: React.FC = () => { 
     const [fetchData, setFetchData] = useState<IFetchData[]>([])
     const auth = useContext(AuthContext)
-    const { loading, request } = useHttp()
+    const { request } = useHttp()
 
     const statisticsHandler = useCallback(async () => { 
         try {
@@ -37,9 +36,6 @@ const UserPage: React.FC = () => {
     useEffect(() => { 
         statisticsHandler()
     }, [statisticsHandler])
-    useEffect(() => { 
-        console.log('fetchData', fetchData)
-    }, [fetchData])
 
     return (
             <main className="main">

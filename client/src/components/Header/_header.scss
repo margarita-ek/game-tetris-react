@@ -25,21 +25,9 @@
         grid-template: 1fr/ repeat(2, 1fr) 50px;
     }
 
-    &__logo {
-        a {
-            display: inline-block;
-            height: 25px;
-            width: 138px;
-            // background: url("../img/logo/movieW.png") 0 0/ 100% 100% no-repeat;
-            &:hover {
-                // background: url("../img/logo/movie.png") 0 0/ 100% 100% no-repeat;
-            }
-        }
-    }
-
-    &__link-user {
+    &__link-user, &__link-tetris {
         justify-self: end;
-        font-family: "helveticaneue";
+        font-family: Pixel;
         font-weight: 400;
         text-transform: capitalize;
         line-height: 1.57;
@@ -47,8 +35,12 @@
         font-size: 20px;
         color: $white;
         &:hover {
-            color: $blue;
+            color: $gray;
         }
+    }
+
+    &__link-tetris {
+        justify-self: start;
     }
 
     &__link-logout{
@@ -56,10 +48,11 @@
         display: inline-block;
         width: 20px;
         height: 35px;
-        // background: url("../img/items/exit-w.svg") 0 0/ 100% 100% no-repeat;
+        color: $white;
+        background: url("../img/exit-w.svg") 0 0/ 100% 100% no-repeat;
         cursor: pointer;
         &:hover {
-            // background: url("../img/items/exit-b.svg") 0 0/ 100% 100% no-repeat;
+            background: url("../img/exit-g.svg") 0 0/ 100% 100% no-repeat;
         }
     }
 }

@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = (props) => {
   const { request } = useHttp()
   const auth = useContext(AuthContext)
 
-  const [formStatistics, setFormStatistics] = useState<Form>({
+  const [formStatistics] = useState<Form>({
       score,
       rows,
       level
@@ -43,11 +43,6 @@ const Modal: React.FC<ModalProps> = (props) => {
   }    
 
   const buttonClick = () => { 
-      // setFormStatistics({
-      //     score,
-      //     rows,
-      //     level            
-      // })
       statisticsHandler()
       setShowModal(false)
       setScore(0)
@@ -57,13 +52,14 @@ const Modal: React.FC<ModalProps> = (props) => {
   return(
     <div className="ModalWrapper">
       <div className="ModalWindow">
+        <div className="ModalTitle">Statistics</div>
         <div className="ModalBody">{`Level: ${level}`}</div>
         <div className="ModalBody">{`Rows: ${rows}`}</div>
         <div className="ModalBody">{`Score: ${score}`}</div>
-        <button onClick={buttonClick}>Закрыть</button>
+        <button onClick={buttonClick}>Close</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Modal

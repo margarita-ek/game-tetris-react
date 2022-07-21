@@ -106,6 +106,6 @@ npm run dev
 ```
 Запуск сайта из папки build
 ```
-npm run build
-npm run start
+npm run client:build
+npm run server:start
 ```

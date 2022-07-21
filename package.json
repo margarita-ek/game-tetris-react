@@ -16,9 +16,9 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "client:build": "npm run build --prefix client",
+    "server:start": "cross-env NODE_ENV=production node app.js",    
     "build": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server:start": "cross-env NODE_ENV=production node app.js",
     "start": "node app.js",
     "client": "npm start --prefix client",
     "server": "nodemon app.js",

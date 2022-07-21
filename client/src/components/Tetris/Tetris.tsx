@@ -1,15 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { createStage, isColliding } from '../../gameHelpers'
+
 import { useInterval } from '../../hooks/useInterval'
 import { usePlayer } from '../../hooks/usePlayer'
 import { useStage } from '../../hooks/useStage'
 import { useGameStatus } from '../../hooks/useGameStatus'
+import { useHttp } from '../../hooks/http.hook'
+
 import Stage from '../Stage/Stage'
 import Display from '../Display/Display'
 import StartButton from '../StartButton/StartButton'
 import Modal from '../Modal/Modal'
 
+import { AuthContext } from '../../context/AuthContext'
+
 const Tetris: React.FC = () => {
+    const { request } = useHttp()
+
+    const auth = useContext(AuthContext)
     const [dropTime, setDroptime] = useState<null | number>(null)
     const [gameOver, setGameOver] = useState(true)
     const [showModal, setShowModal] = useState<boolean>(false)
@@ -45,32 +53,31 @@ const Tetris: React.FC = () => {
         setGameOver(false)
     }
 
-    const move = ({ keyCode, repeat }: { keyCode: number; repeat: boolean }): void => {
+    const move = ({ keyCode, repeat }: { keyCode: number , repeat: boolean }): void => {
         if (!gameOver) {
             if (keyCode === 37) {
-                movePlayer(-1);
+                movePlayer(-1)
             } else if (keyCode === 39) {
-                movePlayer(1);
+                movePlayer(1)
             } else if (keyCode === 40) {
-                if (repeat) return;
-                setDroptime(30);
+                if (repeat) return
+                setDroptime(30)
             } else if (keyCode === 38) {
-                playerRotate(stage);
+                playerRotate(stage)
             }
         }
     }
 
     const drop = (): void => {
-        if (rows > level * 10) {
-        setLevel(prev => prev + 1);
-        setDroptime(1000 / level + 200)
+            if (rows > level * 10) {
+            setLevel(prev => prev + 1)
+            setDroptime(1000 / level + 200)
         }
 
         if (!isColliding(player, stage, { x: 0, y: 1 })) {
         updatePlayerPos({ x: 0, y: 1, collided: false })
         } else {
         if (player.pos.y < 1) {
-            console.log('Game over!')
             setGameOver(true)
             setDroptime(null)
         }
@@ -79,7 +86,7 @@ const Tetris: React.FC = () => {
     }
 
     useInterval(() => {
-        drop();
+        drop()
     }, dropTime)
 
     useEffect(() => { 
@@ -88,13 +95,26 @@ const Tetris: React.FC = () => {
         }
     }, [gameOver])
 
+    const statisticsHandler = useCallback(async (formStatistics) => { 
+        try {
+            const data = await request(
+                '/api/statistics',
+                'POST',
+                { ...formStatistics },
+                {
+                Authorization: `Bearer ${auth.token}`
+                }
+            )
+        } catch (error) { }
+    }, [])    
+
     return (
         <div className='tetris' role='button' tabIndex={0} onKeyDown={move} onKeyUp={keyUp} ref={gameArea}>
             <div className='tetris__content'>
                 <div className='tetris__display'>
                 {gameOver ? (
                     <>
-                    <Display gameOver={gameOver} text='Game Over!' />
+                    <Display gameOver={gameOver} text='Game Over' />
                     <StartButton callback={handleStartGame} />
                     </>
                 ) : (
@@ -114,6 +134,7 @@ const Tetris: React.FC = () => {
                     setScore={setScore}
                     setStage={setStage}
                     createStage={createStage}
+                    statisticsHandler={statisticsHandler}
                 /> : null}
             </div>
         </div>

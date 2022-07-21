@@ -2,10 +2,10 @@
 
 .user-list{
     &__container{
-        background-color: $gray;
-        margin: 0 10px 10px 0;
+        background-color: $gray-dark;
+        margin: 0px 10px 10px 0;
         padding: 5px 10px;
-        border-radius: 3px;
+        border-radius: 5px;
     }
     &__list{
         li{

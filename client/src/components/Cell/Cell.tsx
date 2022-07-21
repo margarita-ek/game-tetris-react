@@ -1,8 +1,8 @@
-import React from 'react';
-import { TETROMINOS } from '../../setup';
+import React from 'react'
+import { TETROMINOS } from '../../setup'
 
 type CellProps = {
-  type: keyof typeof TETROMINOS;
+  type: keyof typeof TETROMINOS
 };
 
 interface style { 

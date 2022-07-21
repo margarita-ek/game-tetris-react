@@ -10,7 +10,9 @@ export const useStage = (player: PLAYER, resetPlayer: () => void) => {
   const [rowsCleared, setRowsCleared] = React.useState(0)
 
   React.useEffect(() => {
-    if (!player.pos) return
+    if (!player.pos) { 
+      return
+    } 
 
     setRowsCleared(0)
 
@@ -21,7 +23,6 @@ export const useStage = (player: PLAYER, resetPlayer: () => void) => {
           ack.unshift(new Array(newStage[0].length).fill([0, 'clear']) as STAGECELL[])
           return ack
         }
-
         ack.push(row)
         return ack
       }, [] as STAGE)
@@ -41,15 +42,14 @@ export const useStage = (player: PLAYER, resetPlayer: () => void) => {
       })
 
       if (player.collided) {
-        resetPlayer();
+        resetPlayer()
         return sweepRows(newStage)
       }
-
+      
       return newStage
     }
-
     setStage(prev => updateStage(prev))
-  }, [player.collided, player.pos?.x, player.pos?.y, player.tetromino])
+  }, [player, resetPlayer])
 
   return { stage, setStage, rowsCleared }
 }

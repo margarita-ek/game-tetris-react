@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
-import { useHttp } from "../../hooks/http.hook";
-import { AuthContext } from "../../context/AuthContext";
+import React from 'react'
+
 interface ModalProps {
   level: number
   rows: number
@@ -9,6 +8,7 @@ interface ModalProps {
   setScore: Function
   setStage: Function
   createStage: Function
+  statisticsHandler: Function
 }
 interface Form {
     score: number
@@ -17,48 +17,33 @@ interface Form {
 }
 
 const Modal: React.FC<ModalProps> = (props) => {
-  const { level, rows, score, setShowModal, setScore, setStage, createStage } = props
-  const { request } = useHttp()
-  const auth = useContext(AuthContext)
-
-  const [formStatistics] = useState<Form>({
+  const { level, rows, score, setShowModal, setScore, setStage, createStage, statisticsHandler } = props
+  
+  let formStatistics = {
       score,
       rows,
-      level
-  })    
-
-  const statisticsHandler = async () => { 
-      try {
-          console.log('formStatistics', formStatistics)
-          const data = await request(
-            "/api/statistics",
-            "POST",
-            { ...formStatistics },
-            {
-              Authorization: `Bearer ${auth.token}`
-            }
-          )
-          console.log("data", data.message)
-      } catch (error) { }
-  }    
+      level    
+  }
 
   const buttonClick = () => { 
-      statisticsHandler()
+      if (formStatistics) { 
+        statisticsHandler(formStatistics)
+      }
       setShowModal(false)
       setScore(0)
       setStage(createStage())        
   }  
 
   return(
-    <div className="ModalWrapper">
-      <div className="ModalWindow">
-        <div className="ModalTitle">Statistics</div>
-        <div className="ModalBody">{`Level: ${level}`}</div>
-        <div className="ModalBody">{`Rows: ${rows}`}</div>
-        <div className="ModalBody">{`Score: ${score}`}</div>
-        <button onClick={buttonClick}>Close</button>
+    <div className='modal'>
+      <div className='modal__window'>
+        <div className='modal__title'>GAME OVER</div>
+        <div className='modal__item'>{`Level: ${level}`}</div>
+        <div className='modal__item'>{`Rows: ${rows}`}</div>
+        <div className='modal__item'>{`Score: ${score}`}</div>
+        <button className='modal__button' title='close' onClick={buttonClick}>Close</button>
       </div>
-    </div>
+    </div>      
   )
 }
 

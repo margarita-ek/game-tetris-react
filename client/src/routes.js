@@ -7,21 +7,20 @@ import UserPage from './components/UserPage/UserPage'
 
 
 export const useAppRoutes = (isAuthenticated) => {
-    console.log("isAuthenticated", isAuthenticated)
     if (isAuthenticated) {
         return (
             <Routes>
-                <Route path="/tetris" element={<Tetris />} />
-                <Route path="/user" element={<UserPage />} />
-                <Route path="*" element={<Tetris />} />
+                <Route path='/tetris' element={<Tetris />} />
+                <Route path='/user' element={<UserPage />} />
+                <Route path='*' element={<Tetris />} />
             </Routes>
         )
     }
 
     return (
         <Routes>
-            <Route path="/" element={<AuthPage />} />
-            <Route path="*" element={<AuthPage />} />
+            <Route path='/' element={<AuthPage />} />
+            <Route path='*' element={<AuthPage />} />
         </Routes>
     )
 }

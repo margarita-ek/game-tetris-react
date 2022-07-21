@@ -1,12 +1,12 @@
-import React from 'react';
-import Cell from '../Cell/Cell';
-import { TETROMINOS } from '../../setup';
+import React from 'react'
+import Cell from '../Cell/Cell'
+import { TETROMINOS } from '../../setup'
 
-export type STAGECELL = [keyof typeof TETROMINOS, string];
-export type STAGE = STAGECELL[][];
+export type STAGECELL = [keyof typeof TETROMINOS, string]
+export type STAGE = STAGECELL[][]
 
 type StageProps = {
-  stage: STAGE;
+  stage: STAGE
 }
 
 const Stage: React.FC<StageProps> = ({ stage }) => { 
@@ -17,4 +17,4 @@ const Stage: React.FC<StageProps> = ({ stage }) => {
   )
 }
 
-export default Stage;
+export default Stage

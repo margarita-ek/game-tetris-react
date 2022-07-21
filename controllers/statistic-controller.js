@@ -6,7 +6,7 @@ class statisticsController {
             const { score, rows, level } = req.body;
             const statistics = new StatisticsTetris({ score, rows, level, owner: req.user.userId })
             await statistics.save();
-            return res.status(200).json({ message: "Statistics save", status: 200 })            
+            return res.status(200).json({ message: 'Statistics save', status: 200 })            
         } catch (e) {
             console.log(e)
             res.status(400).json({ message: 'Error sending statistics' })
@@ -19,7 +19,7 @@ class statisticsController {
             res.status(200).json(statistics)
         } catch (e) { 
             console.log(e)
-            res.status(400).json({ message: "Error getting statistics" })
+            res.status(400).json({ message: 'Error getting statistics' })
         }
     }
 }

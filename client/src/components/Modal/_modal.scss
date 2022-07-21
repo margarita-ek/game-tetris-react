@@ -1,76 +1,39 @@
 @import "../../styles/theme";
 
-.ModalWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: $black-back;
-  z-index: 1200;
-
-  & > .ModalWindow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    box-sizing: border-box;
-    min-width: 300px;
-    height: min-content;
-    padding: 40px;    
-    background-color: $white-gray;
-    border-radius: 10px;
-
-    & > .ModalTitle {
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: $black-back;
+    z-index: 1200;
+    &__window{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      box-sizing: border-box;
+      min-width: 300px;
+      height: min-content;
+      padding: 40px;    
+      background-color: $white-gray;
+      border-radius: 10px; 
+    }
+    &__title {
       display: inline;
       color: $gray;
       letter-spacing: 0.05em;
       margin-bottom: 20px;
     }
-
-    & > .ModalBody {
+    &__item {
       margin-top: 20px;
       margin-bottom: 16px;
-
-      & > label {
-        color: $black;
-
-        & > input {
-          display: block;
-          box-sizing: border-box;
-          width: 100%;
-          margin-top: 12px;
-          padding: 8px 24px;
-          border: 1px solid $gray;
-          border-radius: 8px;
-          color: $black;
-
-          &.short {
-            display: inline;
-            position: relative;
-            top: 47px;
-            left: -43px;
-            width: 80px;
-            margin-right: 8px;
-          }
-
-          &.medium {
-            display: inline;
-            position: relative;
-            top: 47px;
-            left: -43px;
-            width: 100px;
-            margin-right: 8px;
-            text-align: center;
-          }
-        }
-      }
     }
-
-    & > button {
+    &__button {
       margin-top: 20px;
       padding: 20px;
       min-height: 50px;
@@ -84,13 +47,10 @@
       border-radius: 10px;
       background-color: inherit;
       color: $gray-dark;
-    
       &:hover {
         background-color: $black-stage;
         color: $white;
         border-color: $black-stage;
       }
-    }  
-  }
+    }
 }
-

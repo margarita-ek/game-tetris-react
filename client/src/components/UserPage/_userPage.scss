@@ -56,5 +56,11 @@
     &__list-container{
         max-height: 50vh;
         overflow-y: auto;
+        outline: 2px solid $gray;
+        border-radius: 5px;
+        padding: 10px 0 10px 10px;
+    }
+    &__list-container div:last-child{
+        margin: 0px 10px 0 0;
     }
 }

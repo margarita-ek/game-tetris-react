@@ -1,8 +1,8 @@
 .user-list__container {
-  background-color: #777;
-  margin: 0 10px 10px 0;
+  background-color: #333;
+  margin: 0px 10px 10px 0;
   padding: 5px 10px;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .user-list__list li {
@@ -85,6 +85,13 @@
 .statistics__list-container {
   max-height: 50vh;
   overflow-y: auto;
+  outline: 2px solid #777;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+}
+
+.statistics__list-container div:last-child {
+  margin: 0px 10px 0 0;
 }
 
 .header {
@@ -514,7 +521,7 @@
   color: #777;
 }
 
-.ModalWrapper {
+.modal {
   position: absolute;
   top: 0;
   left: 0;
@@ -531,7 +538,7 @@
   z-index: 1200;
 }
 
-.ModalWrapper > .ModalWindow {
+.modal__window {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -554,54 +561,19 @@
   border-radius: 10px;
 }
 
-.ModalWrapper > .ModalWindow > .ModalTitle {
+.modal__title {
   display: inline;
   color: #777;
   letter-spacing: 0.05em;
   margin-bottom: 20px;
 }
 
-.ModalWrapper > .ModalWindow > .ModalBody {
+.modal__item {
   margin-top: 20px;
   margin-bottom: 16px;
 }
 
-.ModalWrapper > .ModalWindow > .ModalBody > label {
-  color: #111;
-}
-
-.ModalWrapper > .ModalWindow > .ModalBody > label > input {
-  display: block;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  margin-top: 12px;
-  padding: 8px 24px;
-  border: 1px solid #777;
-  border-radius: 8px;
-  color: #111;
-}
-
-.ModalWrapper > .ModalWindow > .ModalBody > label > input.short {
-  display: inline;
-  position: relative;
-  top: 47px;
-  left: -43px;
-  width: 80px;
-  margin-right: 8px;
-}
-
-.ModalWrapper > .ModalWindow > .ModalBody > label > input.medium {
-  display: inline;
-  position: relative;
-  top: 47px;
-  left: -43px;
-  width: 100px;
-  margin-right: 8px;
-  text-align: center;
-}
-
-.ModalWrapper > .ModalWindow > button {
+.modal__button {
   margin-top: 20px;
   padding: 20px;
   min-height: 50px;
@@ -617,7 +589,7 @@
   color: #333;
 }
 
-.ModalWrapper > .ModalWindow > button:hover {
+.modal__button:hover {
   background-color: #222;
   color: #fff;
   border-color: #222;

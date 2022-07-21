@@ -570,9 +570,14 @@
 
 .modal__title {
   display: inline;
-  color: #777;
+  color: #FF4530;
   letter-spacing: 0.05em;
   margin-bottom: 20px;
+}
+
+.modal__container {
+  display: -ms-grid;
+  display: grid;
 }
 
 .modal__item {

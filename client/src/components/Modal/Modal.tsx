@@ -38,9 +38,11 @@ const Modal: React.FC<ModalProps> = (props) => {
     <div className='modal'>
       <div className='modal__window'>
         <div className='modal__title'>GAME OVER</div>
-        <div className='modal__item'>{`Level: ${level}`}</div>
-        <div className='modal__item'>{`Rows: ${rows}`}</div>
-        <div className='modal__item'>{`Score: ${score}`}</div>
+        <div className='modal__container'>
+          <div className='modal__item'>{`Level: ${level}`}</div>
+          <div className='modal__item'>{`Rows: ${rows}`}</div>
+          <div className='modal__item'>{`Score: ${score}`}</div>          
+        </div>
         <button className='modal__button' title='close' onClick={buttonClick}>Close</button>
       </div>
     </div>      

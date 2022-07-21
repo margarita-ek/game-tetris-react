@@ -25,9 +25,12 @@
     }
     &__title {
       display: inline;
-      color: $gray;
+      color: $red;
       letter-spacing: 0.05em;
       margin-bottom: 20px;
+    }
+    &__container{
+      display: grid;
     }
     &__item {
       margin-top: 20px;

@@ -11,7 +11,7 @@ type StageProps = {
 
 const Stage: React.FC<StageProps> = ({ stage }) => { 
   return (
-    <div className='stage'>
+    <div className='tetris__stage'>
       {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} /> ))}
     </div>
   )

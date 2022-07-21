@@ -1,9 +1,9 @@
 @import "../../styles/theme";
 
 .tetris{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template: 80px auto 80px/ 1fr auto 1fr;
+    align-items: center;
     height: 100vh;
     background-color: $black-back;
     font-family: Pixel, Arial, Helvetica, sans-serif;
@@ -11,14 +11,35 @@
     overflow: hidden;
     outline: none;
     &__content{
+        grid-row: 2/3;
+        grid-column: 2/3;
         display: grid;
-        grid-template: 1fr/ repeat(2, auto);
+        grid-template: auto/ repeat(2, auto);
         grid-column-gap: 20px;
         justify-content: center;
         margin: 0 auto;
+    }
+    &__stage {
+        grid-column: 1/2;
+        display: grid;
+        grid-template-columns: repeat(12, 30px);
+        grid-template-rows: repeat(20, 30px);
+        grid-gap: 1px;
+        border: 1px solid $gray;
+        background: $black-stage;
+        @media (max-height: 767.98px) {
+            grid-template-columns: repeat(12, 20px);
+            grid-template-rows: repeat(20, 20px);
+        }
+    
+        @media (max-height: 479.98px) {
+            grid-template-columns: repeat(12, 15px);
+            grid-template-rows: repeat(20, 15px);
+        }
     }
     &__display{
         grid-column: 2/3;
         grid-row: 1/2;
     }
 }
+

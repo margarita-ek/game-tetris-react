@@ -16,8 +16,7 @@ export const useHttp = () => {
             const data:any = await response.json()
 
             if (!response.ok) {
-                let [obj] = data.errors.errors
-                throw new Error(obj.msg|| 'The request failed')                    
+                throw new Error(data.message || 'The request failed')                    
             }
 
             setLoading(false)

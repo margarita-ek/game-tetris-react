@@ -7,11 +7,25 @@ require('dotenv').config();
 class authController {
     async registration(req, res) {
         try {
+            const { username, email, password } = req.body;
+            if (!username) { 
+                return res.status(400).json({ message: 'Enter your name' })
+            }              
+            if (!email) { 
+                return res.status(400).json({ message: 'E-mail not found' })
+            }              
+            if (!password) { 
+                return res.status(400).json({ message: 'Password not found' })
+            }              
+            if (password) { 
+                if (password.length < 6) { 
+                    return res.status(400).json({ message: 'Password must be at least 6 characters' })
+                }
+            }              
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
                 return res.status(400).json({ message: 'Registration error', errors })
-            }       
-            const { username, email, password } = req.body;
+            }                 
             const candidate = await User.findOne({ email })
             if (candidate) {
                 return res.status(400).json({message: 'User with this e-mail already exists'})

@@ -28,6 +28,10 @@ class authController {
     
     async login(req, res) { 
         try {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ message: 'Login error', errors })
+            }               
             const { username, email, password } = req.body
             const user = await User.findOne({ email })
             if (!user) { 
@@ -35,7 +39,7 @@ class authController {
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) { 
-                return res.status(400).json({ message: 'Wrong data' })
+                return res.status(400).json({ message: 'Invalid password' })
             }
             const token = jwt.sign(
                 { userId: user._id },

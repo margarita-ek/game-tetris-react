@@ -12,11 +12,12 @@ export const useHttp = () => {
                 headers['Content-Type'] = 'application/json'
             }
 
-            const response = await fetch(url, {method, body, headers})
-            const data = await response.json()
+            const response:any = await fetch(url, {method, body, headers})
+            const data:any = await response.json()
 
             if (!response.ok) {
-                throw new Error(data.message || 'The request failed')
+                let [obj] = data.errors.errors
+                throw new Error(obj.msg|| 'The request failed')                    
             }
 
             setLoading(false)
